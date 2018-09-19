@@ -1,0 +1,137 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="sap.hana.democontent.epm">
+            <EntityType Name="SalesOrderHeaderType">
+                <Key>
+                    <PropertyRef Name="SALESORDERID"/>
+                </Key>
+                <Property Name="SALESORDERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="HISTORY.CREATEDBY.EMPLOYEEID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="HISTORY.CREATEDAT" Type="Edm.DateTime"/>
+                <Property Name="HISTORY.CHANGEDBY.EMPLOYEEID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="HISTORY.CHANGEDAT" Type="Edm.DateTime"/>
+                <Property Name="NOTEID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="PARTNER.PARTNERID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CURRENCY" Type="Edm.String" MaxLength="5"/>
+                <Property Name="GROSSAMOUNT" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="NETAMOUNT" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="TAXAMOUNT" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="LIFECYCLESTATUS" Type="Edm.String" MaxLength="1"/>
+                <Property Name="BILLINGSTATUS" Type="Edm.String" MaxLength="1"/>
+                <Property Name="DELIVERYSTATUS" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="Buyer" Relationship="sap.hana.democontent.epm.SO_PartnerType" FromRole="SalesOrderHeaderPrincipal" ToRole="BuyerDependent"/>
+                <NavigationProperty Name="SalesOrderItem" Relationship="sap.hana.democontent.epm.SO_ItemType" FromRole="SalesOrderHeaderPrincipal" ToRole="SalesOrderItemDependent"/>
+            </EntityType>
+            <EntityType Name="BuyerType">
+                <Key>
+                    <PropertyRef Name="PARTNERID"/>
+                </Key>
+                <Property Name="PARTNERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="PARTNERROLE" Type="Edm.String" MaxLength="3"/>
+                <Property Name="EMAILADDRESS" Type="Edm.String" MaxLength="255"/>
+                <Property Name="COMPANYNAME" Type="Edm.String" MaxLength="80"/>
+                <Property Name="LEGALFORM" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="POSTALCODE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="BUILDING" Type="Edm.String" MaxLength="10"/>
+                <Property Name="STREET" Type="Edm.String" MaxLength="60"/>
+                <Property Name="COUNTRY" Type="Edm.String" MaxLength="3"/>
+                <Property Name="REGION" Type="Edm.String" MaxLength="4"/>
+            </EntityType>
+            <EntityType Name="SalesOrderItemType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="2147483647"/>
+                <Property Name="LIFECYCLESTATUS" Type="Edm.String" MaxLength="1"/>
+                <Property Name="BILLINGSTATUS" Type="Edm.String" MaxLength="1"/>
+                <Property Name="DELIVERYSTATUS" Type="Edm.String" MaxLength="1"/>
+                <Property Name="HISTORY_CREATEDBY" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SALESORDERID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CURRENCY" Type="Edm.String" MaxLength="5"/>
+                <Property Name="SALESORDERITEM" Type="Edm.String" MaxLength="10"/>
+                <Property Name="QUANTITYUNIT" Type="Edm.String" MaxLength="3"/>
+                <Property Name="PARTNERID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="PRODUCTID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="PRODUCT_TYPECODE" Type="Edm.String" MaxLength="2"/>
+                <Property Name="PRODUCT_CATEGORY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="PRODUCT_CURRENCY" Type="Edm.String" MaxLength="5"/>
+                <Property Name="PRODUCT_WEIGHTUNIT" Type="Edm.String" MaxLength="3"/>
+                <Property Name="PRODUCT_WEIGHTMEASURE" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="PRODUCT_PRICE" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="PRODUCTPICURL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SUPPLIER_ID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="PROD_COMPANYNAME" Type="Edm.String" MaxLength="80"/>
+                <Property Name="SUPPLIER_CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="SUPPLIER_POSTALCODE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SUPPLIER_STREET" Type="Edm.String" MaxLength="60"/>
+                <Property Name="SUPPLIER_BUILDING" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SUPPLIER_COUNTRY" Type="Edm.String" MaxLength="3"/>
+                <Property Name="SUPPLIER_REGION" Type="Edm.String" MaxLength="4"/>
+                <Property Name="PRODUCT_NAME" Type="Edm.String" MaxLength="1024"/>
+                <Property Name="PRODUCT_DESCRIPTION" Type="Edm.String" MaxLength="1024"/>
+                <Property Name="POSTING_DATE" Type="Edm.DateTime"/>
+                <Property Name="NETAMOUNT" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="TAXAMOUNT" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="QUANTITY" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="RM_AMOUNT_NEW" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="RM_AMOUNT_COMPLETED" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="RM_AMOUNT_INPROCESS" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="RM_AMOUNT_PAID" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="RM_AMOUNT_UNPAID" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="RM_AMOUNT_DELIVERD" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="RM_AMOUNT_UNDELIVERD" Type="Edm.Decimal" Precision="15" Scale="2"/>
+            </EntityType>
+            <EntityType Name="ProductDetailsType">
+                <Key>
+                    <PropertyRef Name="PRODUCTID"/>
+                </Key>
+                <Property Name="PRODUCTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="PRODUCT_TYPECODE" Type="Edm.String" MaxLength="2"/>
+                <Property Name="PRODUCT_CATEGORY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="PRODUCT_CURRENCY" Type="Edm.String" MaxLength="5"/>
+                <Property Name="PRODUCT_WEIGHTUNIT" Type="Edm.String" MaxLength="3"/>
+                <Property Name="PRODUCT_WEIGHTMEASURE" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="PRODUCT_PRICE" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="PRODUCTPICURL" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SUPPLIER_ID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="COMPANYNAME" Type="Edm.String" MaxLength="80"/>
+                <Property Name="SUPPLIER_CITY" Type="Edm.String" MaxLength="40"/>
+                <Property Name="SUPPLIER_POSTALCODE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SUPPLIER_STREET" Type="Edm.String" MaxLength="60"/>
+                <Property Name="SUPPLIER_BUILDING" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SUPPLIER_COUNTRY" Type="Edm.String" MaxLength="3"/>
+                <Property Name="SUPPLIER_REGION" Type="Edm.String" MaxLength="4"/>
+                <Property Name="PRODUCT_NAME" Type="Edm.String" MaxLength="1024"/>
+                <Property Name="PRODUCT_DESCRIPTION" Type="Edm.String" MaxLength="1024"/>
+            </EntityType>
+            <Association Name="SO_PartnerType">
+                <End Type="sap.hana.democontent.epm.SalesOrderHeaderType" Role="SalesOrderHeaderPrincipal" Multiplicity="1"/>
+                <End Type="sap.hana.democontent.epm.BuyerType" Role="BuyerDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="SO_ItemType">
+                <End Type="sap.hana.democontent.epm.SalesOrderHeaderType" Role="SalesOrderHeaderPrincipal" Multiplicity="1"/>
+                <End Type="sap.hana.democontent.epm.SalesOrderItemType" Role="SalesOrderItemDependent" Multiplicity="*"/>
+            </Association>
+            <EntityContainer Name="salesOrders" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="SalesOrderHeader" EntityType="sap.hana.democontent.epm.SalesOrderHeaderType"/>
+                <EntitySet Name="Buyer" EntityType="sap.hana.democontent.epm.BuyerType"/>
+                <EntitySet Name="SalesOrderItem" EntityType="sap.hana.democontent.epm.SalesOrderItemType"/>
+                <EntitySet Name="ProductDetails" EntityType="sap.hana.democontent.epm.ProductDetailsType"/>
+                <AssociationSet Name="SO_Partner" Association="sap.hana.democontent.epm.SO_PartnerType">
+                    <End Role="SalesOrderHeaderPrincipal" EntitySet="SalesOrderHeader"/>
+                    <End Role="BuyerDependent" EntitySet="Buyer"/>
+                </AssociationSet>
+                <AssociationSet Name="SO_Item" Association="sap.hana.democontent.epm.SO_ItemType">
+                    <End Role="SalesOrderHeaderPrincipal" EntitySet="SalesOrderHeader"/>
+                    <End Role="SalesOrderItemDependent" EntitySet="SalesOrderItem"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,14 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="odatabasic.controller.BuyerList">
+	<App >
+		<pages>
+			<Page title="Buyer Overview">
+				<content>
+				    <List noDataText="Drop list items here" id="__list0" items="{/Buyer}">
+				        <items>
+				            <StandardListItem type="Navigation" title="Partner#{PARTNERID}" id="__item0" press="GoDetail"/></items>
+				    </List>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
